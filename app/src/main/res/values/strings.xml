@@ -13,4 +13,5 @@
     <string name="todo">TODO</string>
     <string name="skip">skip</string>
     <string name="get_started">Get started</string>
+    <string name="name" >Name</string>/>
 </resources>
