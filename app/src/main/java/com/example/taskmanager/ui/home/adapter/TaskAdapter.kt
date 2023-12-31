@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.taskmanager.App
 import com.example.taskmanager.databinding.ItemTaskBinding
 import com.example.taskmanager.model.Task
 
-class TaskAdapter(private val onClick: (Task) -> Unit) :
+class TaskAdapter(private val onLongClick: (Task) -> Unit, val onClick: (Task) -> Unit) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     private val list = arrayListOf<Task>()
@@ -41,11 +42,13 @@ class TaskAdapter(private val onClick: (Task) -> Unit) :
         fun bind(task: Task) = with(binding) {
             tvTitle.text = task.title
             tvDesc.text = task.desc
-            itemView.setOnLongClickListener() {
-                onClick(task)
+            itemView.setOnLongClickListener {
+                onLongClick(task)
                 false
+            }
+            itemView.setOnClickListener {
+                onClick(task)
             }
         }
     }
-
 }
