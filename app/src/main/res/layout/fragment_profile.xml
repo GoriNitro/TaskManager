@@ -32,16 +32,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_name"
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:hint="@string/name"
-        android:textColorHint="@color/white"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/img_profile"/>
+        app:layout_constraintTop_toBottomOf="@id/img_profile"
+        android:layout_margin="32dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/et_name"
+            android:hint="@string/name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_height="match_parent"
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
