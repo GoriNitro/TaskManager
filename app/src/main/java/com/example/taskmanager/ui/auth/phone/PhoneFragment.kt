@@ -1,6 +1,5 @@
 package com.example.taskmanager.ui.auth.phone
 
-import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,10 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentPhoneBinding
 import com.example.taskmanager.utils.showToast
 import com.google.firebase.FirebaseException
@@ -58,7 +57,7 @@ class PhoneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.etPhone.setText("+7")
+        binding.etPhone.setText(context?.getText(R.string._996))
 
         binding.etPhone.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(
@@ -76,8 +75,7 @@ class PhoneFragment : Fragment() {
                 count: Int
             ) {
                 if (start == 0 && count < before) {
-
-                    binding.etPhone.setText("+996")
+                    binding.etPhone.setText(context?.getText(R.string._996))
                     binding.etPhone.text?.let { binding.etPhone.setSelection(it.length) }
                 }
             }

@@ -10,8 +10,11 @@ import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.createBitmap
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
+import com.example.taskmanager.R
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
 
@@ -20,10 +23,9 @@ class ProfileFragment : Fragment() {
     private val pref: Pref by lazy {
         Pref(requireContext())
     }
-    private lateinit var bitmap: Bitmap
 
 
-    private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+    /*private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
         val galleryUri = it
         try {
             binding.imgProfile.setImageURI(galleryUri)
@@ -31,12 +33,11 @@ class ProfileFragment : Fragment() {
             e.printStackTrace()
         }
 
-    }
+    }*/
+    //Open gallery
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -50,7 +51,8 @@ class ProfileFragment : Fragment() {
 
     private fun initListener() {
         binding.imgProfile.setOnClickListener {
-            galleryLauncher.launch("image/*")
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.phoneFragment)
         }
         binding.etName.setText(pref.getName())
         binding.etName.addTextChangedListener {
